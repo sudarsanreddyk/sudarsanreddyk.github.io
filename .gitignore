@@ -1,4 +1,4 @@
-myimage.jpg
+# Ignore other common files
 *.log
 *.tmp
 .DS_Store
