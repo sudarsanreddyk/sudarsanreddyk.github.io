@@ -1,11 +1,745 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Personal Webpage</title>
+    <title>Sudarsan Reddy Katam | Data Scientist & AI Researcher</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-item {
+            background: none;
+            color: #2c3e50;
+            padding: 0.5rem 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-item:hover {
+            color: #3498db;
+            transform: translateY(-1px);
+        }
+
+        .nav-item.active {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23f0f8ff" width="1200" height="800"/><circle cx="200" cy="200" r="50" fill="%23e6f3ff"/><circle cx="800" cy="300" r="80" fill="%23ddeeff"/><circle cx="1000" cy="600" r="60" fill="%23e6f3ff"/><rect x="100" y="600" width="200" height="150" fill="%23667eea" opacity="0.1"/><rect x="900" y="100" width="250" height="200" fill="%23764ba2" opacity="0.1"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 20%;
+            border: 4px solid white;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .content-sections {
+            background: white;
+            min-height: 100vh;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+            text-align: left;
+            margin-bottom: 3rem;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            text-align: center;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 20%;
+            border: 5px solid #3498db;
+            margin: 2rem auto 2rem auto;
+            display: block;
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(52, 152, 219, 0.4);
+        }
+
+        .intro {
+            text-align: center;
+        }
+
+        .intro h1 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .intro p:last-child {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+
+        .education {
+            margin-top: 3rem;
+            text-align: left;
+        }
+
+        .education h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        .education-item {
+            background: white;
+            border: 1px solid #eee;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .education-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .education-item h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .education-item h4 {
+            color: #3498db;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        .education-item .education-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+        }
+
+        .education-item p {
+            color: #666;
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .experience {
+            margin-top: 3rem;
+            text-align: left;
+        }
+
+        .experience h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            border-bottom: 3px solid #f39c12;
+            padding-bottom: 0.5rem;
+        }
+
+        .experience-item {
+            background: white;
+            border: 1px solid #eee;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .experience-item h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .experience-item h4 {
+            color: #3498db;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        .experience-item .experience-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item .experience-location {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .experience-item ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .experience-item li {
+            color: #666;
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .experience-item li::before {
+            content: "•";
+            color: #3498db;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: bold;
+        }
+
+        .project-item {
+            background: white;
+            border: 1px solid #eee;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .project-item h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .project-item .project-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .project-item ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .project-item li {
+            color: #666;
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .project-item li::before {
+            content: "▶";
+            color: #3498db;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .project-tools {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #2c3e50;
+            font-weight: 500;
+            border: 1px solid #eee;
+        }
+
+        .certification-item {
+            background: white;
+            border: 1px solid #eee;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .certification-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .certification-item h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .certification-item .cert-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .certification-details {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            border: 1px solid #eee;
+        }
+
+        .certification-details p {
+            margin: 0.3rem 0;
+            font-size: 0.9rem;
+            color: #2c3e50;
+        }
+
+        .certification-details strong {
+            color: #3498db;
+        }
+
+        .skill-category {
+            background: white;
+            border: 1px solid #eee;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-category h3::before {
+            content: "🔧";
+            margin-right: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .skill-category h3[data-category="programming"]::before { content: "💻"; }
+        .skill-category h3[data-category="ai"]::before { content: "🤖"; }
+        .skill-category h3[data-category="ml"]::before { content: "🧠"; }
+        .skill-category h3[data-category="data"]::before { content: "🔄"; }
+        .skill-category h3[data-category="viz"]::before { content: "📊"; }
+        .skill-category h3[data-category="dev"]::before { content: "⚙️"; }
+        .skill-category h3[data-category="cloud"]::before { content: "☁️"; }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: #3498db;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .top-nav {
+                padding: 1rem;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .nav-item {
+                font-size: 0.8rem;
+                padding: 0.5rem 0.8rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+                padding: 0 1rem;
+            }
+
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+            }
+
+            .content-sections {
+                padding: 2rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .education-item, .experience-item, .project-item, .certification-item, .skill-category {
+                padding: 1rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, I'm Sudarsan Reddy Katam</h1>
-    <p>Welcome to my personal website!</p>
+    <div class="top-nav">
+        <div class="nav-menu">
+            <button class="nav-item active" onclick="showSection('education')">Education</button>
+            <button class="nav-item" onclick="showSection('experience')">Experience</button>
+            <button class="nav-item" onclick="showSection('projects')">Projects</button>
+            <button class="nav-item" onclick="showSection('certifications')">Certifications</button>
+            <button class="nav-item" onclick="showSection('skills')">Skills</button>
+        </div>
+    </div>
+
+    <div class="hero-section">
+        <img src="myimage.jpg" alt="Profile Picture" class="profile-pic">
+        <h1 class="hero-title">Hi, I'm Sudarsan Reddy.</h1>
+        <p class="hero-subtitle">I am currently a Masters Data Science student from TUHH, Germany | Ex-Wipro | Passionate about AI, Machine Learning</p>
+    </div>
+
+    <div class="content-sections">
+        <div class="container">
+
+        <div class="education section active" id="education">
+            <h2>Education</h2>
+            
+            <div class="education-item">
+                <h3>M.Sc. in Data Science</h3>
+                <h4>Technische Universität Hamburg (TUHH), Germany</h4>
+                <div class="education-date">Oct 2023 - Present</div>
+                <p>Specializations: Machine Learning, Computer Vision, Reinforcement Learning, Big Data Analytics</p>
+            </div>
+
+            <div class="education-item">
+                <h3>B.Tech in Computer Science</h3>
+                <h4>REVA University, Bangalore</h4>
+                <div class="education-date">Jul 2015 - Jun 2019</div>
+                <p>Core Areas: SQL, Database Management Systems (DBMS), Software Engineering</p>
+            </div>
+        </div>
+
+        <div class="experience section" id="experience">
+            <h2>Professional Experience</h2>
+            
+            <div class="experience-item">
+                <h3>Consultant</h3>
+                <h4>Wipro Technologies</h4>
+                <div class="experience-date">September 2019 – September 2023</div>
+                <div class="experience-location">Bangalore, India</div>
+                <ul>
+                    <li>4 years of programming experience as Oracle PL/SQL developer in Oracle EBS in Finance and HRMS module</li>
+                    <li>Worked mainly on AP,AR,GL,FA,PN modules in Oracle Finance ERP</li>
+                    <li>Involved in design and development of Oracle Forms</li>
+                    <li>Developed reports in XML publisher</li>
+                    <li>Tuned and optimized SQL queries that improved performance</li>
+                    <li>Designed and developed automation programs in Python which reduced manual efforts by 90% in performing daily tasks</li>
+                    <li>Created batch scripts to obtain periodic data for audit purpose</li>
+                    <li>Good knowledge of Microsoft Office</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="projects section" id="projects">
+            <h2>Academic Projects</h2>
+            
+            <div class="project-item">
+                <h3>Wind Power Prediction of Time Series Data Using RNN's</h3>
+                <ul>
+                    <li>Developed an LSTM-based time-series model to forecast short-term wind power from SCADA sensor data</li>
+                    <li>Handled data cleaning, feature engineering, and model optimization with Python, NumPy, Pandas, PyTorch</li>
+                    <li>Created interactive visualizations to monitor prediction performance over time and compare model forecasts with actual turbine outputs</li>
+                </ul>
+            </div>
+
+            <div class="project-item">
+                <h3>End-to-End Sentiment Classification Pipeline</h3>
+                <ul>
+                    <li>Built real-time processing system using Apache Kafka, Flink, and FastAPI for NLP classification</li>
+                    <li>Implemented state-of-the-art transformer architectures for sentiment analysis</li>
+                    <li>Developed scalable machine learning pipeline with systematic evaluation methodology</li>
+                    <li>Used Pandas/NumPy for feature extraction, with versioned deployments via Docker</li>
+                </ul>
+            </div>
+
+            <div class="project-item">
+                <h3>Power BI Dashboard for Marketing Analytics</h3>
+                <ul>
+                    <li>Built a Power BI dashboard to visualize key marketing KPIs (e.g., campaign ROI, customer segmentation, channel performance)</li>
+                    <li>Automated data transformation using Power Query and created custom KPIs using DAX formulas</li>
+                    <li>Enabled dynamic filtering, interactive charts, and trend-based storytelling for stakeholders</li>
+                </ul>
+                <div class="project-tools">
+                    <strong>Tools:</strong> Power BI, Power Query, Excel, Python, SQL
+                </div>
+            </div>
+        </div>
+
+        <div class="certifications section" id="certifications">
+            <h2>Certifications</h2>
+            
+            <div class="certification-item">
+                <h3>Microsoft Certified: Azure Data Fundamentals (DP-900)</h3>
+                <div class="cert-date">Earned on: May 7, 2025</div>
+                <div class="certification-details">
+                    <p><strong>Credential ID:</strong> 6D53873D50B9CC49</p>
+                    <p><strong>Certification Number:</strong> AT28C9-649720</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="skills section" id="skills">
+            <h2>Technical Skills</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 data-category="programming">Programming</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">PL/SQL</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 data-category="ai">AI Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MS Copilot</span>
+                        <span class="skill-tag">ChatGPT</span>
+                        <span class="skill-tag">Claude</span>
+                        <span class="skill-tag">GitHub Copilot</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 data-category="ml">ML/AI & NLP</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">scikit-learn</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Keras</span>
+                        <span class="skill-tag">HuggingFace Transformers</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 data-category="data">Data Engineering</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">ETL Pipelines</span>
+                        <span class="skill-tag">Apache Kafka</span>
+                        <span class="skill-tag">Flink</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 data-category="viz">Visualization</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Tableau (Basic)</span>
+                        <span class="skill-tag">Excel</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 data-category="dev">Dev Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Jupyter</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Linux</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 data-category="cloud">Cloud Platforms</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">GCP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all nav items
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked nav item
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
